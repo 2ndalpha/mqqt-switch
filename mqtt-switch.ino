@@ -9,8 +9,8 @@
 
 #define CONNECTION_CHECK_INTERVAL 10 // In seconds
 
-extern "C" { 
-  #include "user_interface.h" 
+extern "C" {
+  #include "user_interface.h"
 }
 
 WiFiClient wifiClient;
@@ -64,13 +64,14 @@ void loop() {
 bool connectToWifi() {
   Serial.println("Connecting to Wifi " + settings->getWifiSSID());
   int retries = 10;
+  WiFi.mode(WIFI_STA);
   WiFi.begin(settings->getWifiSSID().c_str(), settings->getWifiPassword().c_str());
   while ((WiFi.status() != WL_CONNECTED) && retries--) {
     delay(500);
     Serial.print(" .");
   }
 
-  if (WiFi.status() == WL_CONNECTED) { 
+  if (WiFi.status() == WL_CONNECTED) {
     Serial.print("IP address: ");
     Serial.println(WiFi.localIP());
     return true;
