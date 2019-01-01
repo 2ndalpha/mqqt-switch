@@ -16,7 +16,7 @@ Webserver::Webserver(Settings* settings) {
 
   server->on("/", [&](){
 
-    String html = "<html><head><title>" + this->settings->getName() + "</title>";
+    String html = "<html><head><title>" + this->settings->getName() + " - MQTT Switch</title>";
     html += "<link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css\" crossorigin=\"anonymous\">";
     html += "<link href=\"https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css\" rel=\"stylesheet\" />";
     html += "</head><body>";
@@ -31,7 +31,7 @@ Webserver::Webserver(Settings* settings) {
     html += "Relay Pin: " + String(this->settings->getRelayPin()) + "</p>";
     html += "<p><a href=\"ota\" class=\"btn btn-primary\"><i class=\"fa fa-refresh\" aria-hidden=\"true\"></i> Upgrade</a></p>";
     html += "</div></div></body></html>";
-    
+
     this->server->send(200, "text/html", html);
   });
 
@@ -72,7 +72,7 @@ String Webserver::uptime() {
   else if (days > 1) {
     result = String(days) + " days, " + result;
   }
-  
+
   return result;
 }
 
